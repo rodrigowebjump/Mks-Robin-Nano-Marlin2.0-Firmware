@@ -1566,7 +1566,7 @@
  *
  * Warning: Does not respect endstops!
  */
- //#define BABYSTEPPING
+#define BABYSTEPPING
 #if ENABLED(BABYSTEPPING)
   //#define INTEGRATED_BABYSTEPPING         // EXPERIMENTAL integration of babystepping into the Stepper ISR
   //#define BABYSTEP_WITHOUT_HOMING
@@ -1587,7 +1587,7 @@
     #endif
   #endif
 
-  //#define BABYSTEP_DISPLAY_TOTAL          // Display total babysteps since last G28
+  #define BABYSTEP_DISPLAY_TOTAL          // Display total babysteps since last G28
 
   #define BABYSTEP_ZPROBE_OFFSET          // Combine M851 Z and Babystepping
   #if ENABLED(BABYSTEP_ZPROBE_OFFSET)
@@ -2291,14 +2291,14 @@
   #endif
 
   #if AXIS_IS_TMC(E0)
-    #define E0_CURRENT      800
+    #define E0_CURRENT      700
     #define E0_MICROSTEPS    16
     #define E0_RSENSE         0.11
     #define E0_CHAIN_POS     -1
   #endif
 
   #if AXIS_IS_TMC(E1)
-    #define E1_CURRENT      800
+    #define E1_CURRENT      700
     #define E1_MICROSTEPS    16
     #define E1_RSENSE         0.11
     #define E1_CHAIN_POS     -1

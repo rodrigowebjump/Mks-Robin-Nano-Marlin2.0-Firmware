@@ -128,7 +128,7 @@
 
 // Choose the name from boards.h that matches your setup
 #ifndef MOTHERBOARD
-  #define MOTHERBOARD BOARD_MKS_ROBIN_NANO_V2
+  #define MOTHERBOARD BOARD_MKS_ROBIN_NANO
 #endif
 
 //#define MKS_TEST
@@ -302,14 +302,14 @@
  *   - This implementation supports up to two mixing extruders.
  *   - Enable DIRECT_MIXING_IN_G1 for M165 and mixing in G1 (from Pia Taubert's reference implementation).
  */
-//#define MIXING_EXTRUDER
+#define MIXING_EXTRUDER
 #if ENABLED(MIXING_EXTRUDER)
   #define MIXING_STEPPERS 2        // Number of steppers in your mixing extruder
   #define MIXING_VIRTUAL_TOOLS 16  // Use the Virtual Tool method with M163 and M164
-  //#define DIRECT_MIXING_IN_G1    // Allow ABCDHI mix factors in G1 movement commands
-  //#define GRADIENT_MIX           // Support for gradient mixing with M166 and LCD
+  #define DIRECT_MIXING_IN_G1    // Allow ABCDHI mix factors in G1 movement commands
+  #define GRADIENT_MIX           // Support for gradient mixing with M166 and LCD
   #if ENABLED(GRADIENT_MIX)
-    //#define GRADIENT_VTOOL       // Add M166 T to use a V-tool index as a Gradient alias
+    #define GRADIENT_VTOOL       // Add M166 T to use a V-tool index as a Gradient alias
   #endif
 #endif
 
@@ -492,9 +492,9 @@
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
   // Ultimaker
-  #define DEFAULT_Kp 22.2
-  #define DEFAULT_Ki 1.08
-  #define DEFAULT_Kd 114
+  #define DEFAULT_Kp 14.52
+  #define DEFAULT_Ki 0.73
+  #define DEFAULT_Kd 71.98
 
   // MakerGear
   //#define DEFAULT_Kp 7.0
@@ -686,16 +686,16 @@
  *          TMC5130, TMC5130_STANDALONE, TMC5160, TMC5160_STANDALONE
  * :['A4988', 'A5984', 'DRV8825', 'LV8729', 'L6470', 'L6474', 'POWERSTEP01', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2160', 'TMC2160_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC2209', 'TMC2209_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE', 'TMC5160', 'TMC5160_STANDALONE']
  */
-//#define X_DRIVER_TYPE A4988
-//#define Y_DRIVER_TYPE A4988
-//#define Z_DRIVER_TYPE A4988
-//#define X2_DRIVER_TYPE A4988
-//#define Y2_DRIVER_TYPE A4988
+#define X_DRIVER_TYPE TMC2209_STANDALONE
+#define Y_DRIVER_TYPE TMC2209_STANDALONE
+#define Z_DRIVER_TYPE TMC2209_STANDALONE
+// #define X2_DRIVER_TYPE A4988
+// #define Y2_DRIVER_TYPE A4988
 //#define Z2_DRIVER_TYPE A4988
 //#define Z3_DRIVER_TYPE A4988
 //#define Z4_DRIVER_TYPE A4988
-//#define E0_DRIVER_TYPE A4988
-//#define E1_DRIVER_TYPE A4988
+#define E0_DRIVER_TYPE TMC2209_STANDALONE
+#define E1_DRIVER_TYPE TMC2209_STANDALONE
 //#define E2_DRIVER_TYPE A4988
 //#define E3_DRIVER_TYPE A4988
 //#define E4_DRIVER_TYPE A4988
@@ -749,7 +749,7 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 93}
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80.4, 80.5, 400.6, 138.6}
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -849,7 +849,7 @@
  * The probe replaces the Z-MIN endstop and is used for Z homing.
  * (Automatically enables USE_PROBE_FOR_Z_HOMING.)
  */
-//#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
+#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
 
 // Force the use of the probe for Z-axis homing
 //#define USE_PROBE_FOR_Z_HOMING
@@ -908,7 +908,7 @@
 /**
  * The BLTouch probe uses a Hall effect sensor and emulates a servo.
  */
- //#define BLTOUCH
+ #define BLTOUCH
 
 /**
  * Pressure sensor with a BLTouch-like interface
@@ -995,7 +995,7 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { -44, -10.4, -1.5 }
+#define NOZZLE_TO_PROBE_OFFSET { -44, 4, -2.1 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1097,12 +1097,12 @@
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
 #define INVERT_X_DIR true
 #define INVERT_Y_DIR true
-#define INVERT_Z_DIR true
+#define INVERT_Z_DIR false
 
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#define INVERT_E0_DIR true
+#define INVERT_E0_DIR false
 #define INVERT_E1_DIR false
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
@@ -1243,7 +1243,7 @@
  */
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
- //#define AUTO_BED_LEVELING_BILINEAR
+ #define AUTO_BED_LEVELING_BILINEAR
 //#define AUTO_BED_LEVELING_UBL
 //#define MESH_BED_LEVELING
 
@@ -1251,7 +1251,7 @@
  * Normally G28 leaves leveling disabled on completion. Enable
  * this option to have G28 restore the prior leveling state.
  */
-//#define RESTORE_LEVELING_AFTER_G28
+#define RESTORE_LEVELING_AFTER_G28
 
 /**
  * Enable detailed logging of G28, G29, M48, etc.
@@ -1350,7 +1350,7 @@
  * Add a bed leveling sub-menu for ABL or MBL.
  * Include a guided procedure if manual probing is enabled.
  */
-//#define LCD_BED_LEVELING
+// #define LCD_BED_LEVELING
 
 #if ENABLED(LCD_BED_LEVELING)
   #define MESH_EDIT_Z_STEP  0.025 // (mm) Step size while manually probing Z axis.
@@ -1394,7 +1394,7 @@
 // - Move the Z probe (or nozzle) to a defined XY point before Z Homing.
 // - Prevent Z homing when the Z probe is outside bed area.
 //
-//#define Z_SAFE_HOMING
+#define Z_SAFE_HOMING
 
 #if ENABLED(Z_SAFE_HOMING)
   #define Z_SAFE_HOMING_X_POINT X_CENTER  // X point for Z homing
@@ -2236,8 +2236,8 @@
 // Just copy the 'assets' folder from the build directory to the
 // root of your SD card, together with the compiled firmware.
 //
-//#define TFT_LVGL_UI_FSMC  // Robin nano v1.2 uses FSMC
-#define TFT_LVGL_UI_SPI   // Robin nano v2.0 uses SPI
+#define TFT_LVGL_UI_FSMC  // Robin nano v1.2 uses FSMC
+// #define TFT_LVGL_UI_SPI   // Robin nano v2.0 uses SPI
 
 #if EITHER(TFT_LVGL_UI_FSMC, TFT_LVGL_UI_SPI)
   #define USE_WIFI_FUNCTION   1
